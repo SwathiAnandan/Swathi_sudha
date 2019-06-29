@@ -1,0 +1,71 @@
+
+//Given an array of unsorted integers, divide it into two sets, each having (arr.length/2) elements such that the sum of each set is as close to each other as possible.
+
+
+
+import java.util.*;
+
+class Main
+{
+
+  public static void main (String args[])
+  {
+    Scanner sc = new Scanner (System.in);
+    int al = sc.nextInt ();
+    int[] a = new int[al];
+    for (int i = 0; i < al; i++)
+        a[i] = sc.nextInt ();
+
+
+      timetaken (a, al);
+  }
+
+  static void timetaken (int[]a, int al)
+  {
+    int s = (1 + al) / 2;
+    int a1[] = new int[s];
+    int a2[] = new int[s];
+    int p1 = 0, p2 = 0, s1 = 0, s2 = 0, i = al - 1;
+    Arrays.sort (a);
+
+    while (p1 < s && p2 < s)
+      {
+	if (s1 < s2)
+	  {
+	    a1[p1] = a[i];
+	    p1++;
+	    s1 += a[i];
+	  }
+	else
+	  {
+	    a2[p2] = a[i];
+	    p2++;
+	    s2 += a[i];
+	  }
+	i--;
+      }
+
+    while (i >= 0)
+      {
+	if (p1 < s)
+	  a1[p1++] = a[i];
+	else
+	  a2[p2++] = a[i];
+	i--;
+      }
+
+    int r = sum (a1);
+    if (r < sum (a2))
+      r = sum (a2);
+    System.out.println (r);
+  }
+
+  static int sum (int a[])
+  {
+    int s1 = 0;
+    for (int i = 0; i < a.length; i++)
+      s1 += a[i];
+    return s1;
+  }
+}
+
