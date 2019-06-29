@@ -1,0 +1,57 @@
+
+//the first greastest digit of the second number by possible combinations by interchanging  the first number
+
+
+import java.util.*;
+
+public class largest{
+    public static  int n2=0,a=0,b=0,c=0;
+public static void swap(char[] arr, int i, int j)
+{
+    char tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
+}
+
+public static void permute(char[] arr, int i,int n2,int n3)
+{
+    if (i == arr.length)
+    {
+        int n=0,n1=1,j=0;
+        for(i=arr.length;i>0;i--)
+        {
+        n=n+(Character.getNumericValue(arr[j])*(int)Math.pow(10,i-1));
+        j++;
+        }
+        int n4=n-n2;
+
+        if(n4>=0 && n4<a)
+        { a=n4;
+          c=n;}
+         b++;
+        
+       if(b==n3)
+         System.out.println(c);
+        return;
+    }
+    for (int j = i; j < arr.length; j++)
+    {
+        swap(arr, i, j); 
+        permute(arr, i + 1,n2,n3);  // recurse call
+        swap(arr, i, j);      // backtracking
+    }
+} 
+
+public static void main(String[] args) {
+
+   
+    Scanner sc= new Scanner(System.in);
+     String n1=sc.next();
+     n2=sc.nextInt();
+    char [] arr=n1.toCharArray();
+    int n3=1;
+    for(int i=n1.length();i>0;i--)
+    n3*=i;
+    a=n2;
+    permute(arr, 0,n2,n3);
+}}
