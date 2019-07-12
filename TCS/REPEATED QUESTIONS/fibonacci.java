@@ -1,3 +1,6 @@
+/*
+sum of squares of the fibonacci series for the given number*/
+
 class Fibonacci{  
 public static void main(String args[])  
 {    
